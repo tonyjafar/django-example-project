@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends 'my_app/base.html' %}
+{% block my_block%}
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcom to My app</h1>
+    <ul>
+      <a href="{% url 'my_app:user_login' %}">Press Here if you have an account already </a><br>
+      <a href="{% url 'my_app:register' %}">Or press Here to Register</a>
+    </ul>
+  </div>
+</div>
+{% endblock %}

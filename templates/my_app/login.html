@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'my_app/base.html' %}
+{% block my_block%}
+<div class="container">
+  <div class="jumbotron">
+    <h1>Please Login Here</h1>
+  </div>
+</div>
+<div class="container">
+  <form method="post">
+    <strong>User Name:</strong>
+    {{ form.username }}
+    <br><br>
+    <strong>Password:</strong>
+    {{ form.password }}
+    {% csrf_token %}
+    <br><br>
+    <input type="submit" class="btn btn-primary" value="Submit">
+  </form>
+  <br><br>
+  {% if error %}
+  <div class="alert alert-danger">
+  <strong>{{ error }}</strong>
+  </div>
+{% endif %}
+</div>
+{% endblock %}

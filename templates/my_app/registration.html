@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'my_app/base.html' %}
+{% block my_block%}
+<div class="container">
+  <div class="jumbotron">
+    <h1>Please Register Here</h1>
+  </div>
+</div>
+<div class="container">
+  <form method="post">
+    <strong>User Name:</strong>
+    {{ create_user_form.username }}
+    <br>
+    <strong>Email:</strong>
+    {{ create_user_form.email }}
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <br>
+    <br>
+    <strong>Password:</strong>
+    {{ create_user_form.password }}
+    <small id="emailHelp" class="form-text text-muted">password length should be between 8 and 16</small>
+    <br>
+    <br>
+    <strong>Confirm your password:</strong>
+    {{ create_user_form.password2 }}
+    {% csrf_token %}
+    <br><br>
+    <input type="submit" class="btn btn-primary" value="Submit">
+  </form>
+  <br><br>
+  {% if create_user_form.errors %}
+{% for field in create_user_form %}
+    {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></strong>
+        </div>
+    {% endfor %}
+{% endfor %}
+{% for error in create_user_form.non_field_errors %}
+    <div class="alert alert-danger">
+        <strong>{{ error|escape }}</strong>
+    </div>
+{% endfor %}
+{% endif %}
+</div>
+{% endblock %}
