@@ -1,2 +1,4 @@
 # django-example-project
-Django implementation Example
+## Implementing various Django solutions.
+###### Examples:
+1. User registration / authentication.
