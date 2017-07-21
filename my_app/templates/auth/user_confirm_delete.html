@@ -1,6 +1,6 @@
 {% extends "auth/my_app_base.html" %}
 {% block my_block %}
-{% if request.user.is_superuser %}
+{% if request.user.pk == user.pk or request.user.is_superuser %}
 <h1>Delete {{user.username }}?</h1>
 
 <form method="post">
