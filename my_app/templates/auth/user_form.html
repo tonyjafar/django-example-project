@@ -1,5 +1,6 @@
 {% extends "auth/my_app_base.html" %}
 {% block my_block %}
+{% if request.user.is_superuser %}
 <h1>
   Update user
 </h1>
@@ -9,6 +10,8 @@
     <input type="submit" class='btn btn-primary' value="Submit">
 
   </form>
-
+{% else %}
+<h1>Please Log in with an admin user</h1>
+{% endif %}
 
 {% endblock %}
