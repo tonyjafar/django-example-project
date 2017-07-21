@@ -1,0 +1,17 @@
+{% extends "auth/my_app_base.html" %}
+{% block my_block %}
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcome to the User Detail Page</h1>
+    <h2>User Details:</h2>
+    <p>Id_num: {{user_details.pk}}</p>
+    <p>Uamer Name: {{user_details.username}}</p>
+    <p>Email: {{user_details.email}}</p>
+  </div>
+</div>
+
+  <div class="container">
+    <p><a class='btn btn-warning' href="{% url 'my_app:update' pk=user_details.pk %}">Update</a></p>   <p><a class='btn btn-danger' href="{% url 'my_app:delete' pk=user_details.pk %}">Delete</a></p>
+  </div>
+
+{% endblock %}

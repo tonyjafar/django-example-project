@@ -1,0 +1,12 @@
+{% extends "auth/my_app_base.html" %}
+{% block my_block %}
+<h1>Delete {{user.username }}?</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="submit" class="btn btn-danger" value="Delete">
+  <a href="{% url 'my_app:detail' pk=user.pk%} ">Cancel</a>
+
+</form>
+
+{% endblock %}

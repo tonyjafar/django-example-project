@@ -2,8 +2,13 @@ from django.shortcuts import render
 from my_app.forms import CreateUserForm, UserLogin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse
-from django.forms import ValidationError
+from django.utils.decorators import method_decorator
+from django.views.generic import (View,TemplateView,
+                                ListView,DetailView,
+                                CreateView,DeleteView,
+                                UpdateView)
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -27,6 +32,7 @@ def register(request):
     return render(request, 'my_app/registration.html', {'create_user_form': create_user_form})
 
 
+@login_required
 def login_success(request, username):
     return render(request, 'my_app/succes.html', {'username': username})
 
@@ -62,3 +68,42 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return index(request)
+
+
+class UsersListView(ListView):
+    context_object_name = 'users_list'
+    model = User
+    template_name = 'my_app/user_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UsersListView, self).dispatch(request, *args, **kwargs)
+
+
+class UserDetailView(DetailView):
+    context_object_name = 'user_details'
+    model = User
+    template_name = 'auth/user_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserDetailView, self).dispatch(request, *args, **kwargs)
+
+
+class UserUpdateView(UpdateView):
+    fields = ("username", "email")
+    model = User
+    success_url = reverse_lazy("my_app:users_list")
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserUpdateView, self).dispatch(request, *args, **kwargs)
+
+
+class UserDeleteView(DeleteView):
+    model = User
+    success_url = reverse_lazy("my_app:users_list")
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserDeleteView, self).dispatch(request, *args, **kwargs)

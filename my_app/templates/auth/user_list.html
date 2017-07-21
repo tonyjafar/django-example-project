@@ -1,0 +1,18 @@
+{% extends "auth/my_app_base.html" %}
+{% block my_block %}
+<div class="container">
+  <div class="jumbotron">
+
+    <h1>Welcome to the List of Users Page!</h1>
+      <ol>
+        {% for user in users_list %}
+          <h2><li><a href="{{user.pk}}/">{{user.username}} </a></li></h2>
+        {% endfor %}
+      </ol>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

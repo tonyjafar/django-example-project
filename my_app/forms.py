@@ -1,9 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from my_app.models import CreateUser
 from passwords.validators import (
     DictionaryValidator, LengthValidator, ComplexityValidator)
-from django.contrib.auth.hashers import check_password
 
 
 class CreateUserForm(forms.ModelForm):

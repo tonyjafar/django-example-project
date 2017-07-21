@@ -19,7 +19,7 @@ from my_app import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url('^/my_app/', include('my_app.urls')),
+    url('^my_app', include('my_app.urls', namespace='my_app')),
     url(r'^admin/', admin.site.urls),
-    url(r'^/logout', views.user_logout, name='user_logout'),
+    url(r'^logout', views.user_logout, name='user_logout'),
 ]
