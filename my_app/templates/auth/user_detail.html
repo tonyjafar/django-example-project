@@ -11,7 +11,7 @@
 </div>
 
   <div class="container">
-    <p><a class='btn btn-warning' href="{% url 'my_app:update' pk=user_details.pk %}">Update</a></p>   <p><a class='btn btn-danger' href="{% url 'my_app:delete' pk=user_details.pk %}">Delete</a></p>
+    <a class='btn btn-warning' href="{% url 'my_app:update' pk=user_details.pk %}">Update</a>   <a class='btn btn-danger' href="{% url 'my_app:delete' pk=user_details.pk %}">Delete</a>
   </div>
 
 {% endblock %}
